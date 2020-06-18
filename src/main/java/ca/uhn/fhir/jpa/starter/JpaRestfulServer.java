@@ -52,11 +52,15 @@ import org.springframework.web.cors.CorsConfiguration;
 import ca.uhn.fhir.jpa.starter.ClientAuthorizationInterceptor;
 
 import javax.servlet.ServletException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Set;
 
-public class JpaRestfulServer extends BaseJpaRestfulServer {
+public class JpaRestfulServer extends RestfulServer {
 
   private static final long serialVersionUID = 1L;
 
+  @SuppressWarnings("unchecked")
   @Override
   protected void initialize() throws ServletException {
     super.initialize();
@@ -364,9 +368,7 @@ public class JpaRestfulServer extends BaseJpaRestfulServer {
         if (HapiProperties.getBulkExportEnabled()) {
             registerProvider(appCtx.getBean(BulkDataExportProvider.class));
         }
-    
-    // Add your own customization here
 
-  }
+    }
 
 }
